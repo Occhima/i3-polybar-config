@@ -10,17 +10,14 @@ NG_base_url = 'http://www.nationalgeographic.com/photography/photo-of-the-day/\
 _jcr_content/.gallery.'
 
 def getImageTitleUrl():
-	today = datetime.today()
+	today = datetime.now()
 	year = str(today.year)
-	if today.month < 10:
-		month = '0' + str(today.month)
-	else:
-		month = str(today.month)
+	month = f'0{str(today.month)}' if today.month < 10 else str(today.month)
 	url = f"{NG_base_url}{year}-{month}.json"
 	print(url);
-	
+
 	r = requests.get(url)
-	
+
 	if r.status_code == 200:
 			data = r.json()
 			if 'items' not in data: return ""
