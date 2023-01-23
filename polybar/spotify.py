@@ -16,12 +16,12 @@ try:
     song = metadata['xesam:title']
 
     if len(song) > trunclen:
-        song = song[0:trunclen]
-        song += '...' 
+        song = song[:trunclen]
+        song += '...'
         if ('(' in song) and (')' not in song):
             song += ')'
 
-    output = artist + ': ' + song
+    output = f'{artist}: {song}'
     print(output)
 except:
     print("")
